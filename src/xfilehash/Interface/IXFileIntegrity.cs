@@ -1,6 +1,6 @@
 namespace xfilehash
 {
-    public interface IXFileHasher
+    public interface IXFileIntegrity
     {
         bool FileIntegrityIsIntact(string fileName);
         void AddFileHashToIntegrityStore(string fileName, string filePath);

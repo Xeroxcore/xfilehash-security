@@ -3,11 +3,11 @@ using xfilehash.Interface;
 
 namespace xfilehash
 {
-    public class XFileHasher : IXFileHasher
+    public class XFileIntegrity : IXFileIntegrity
     {
         private readonly XFileHashList FileHashList = XFileHashList._Instance;
         private IXHashAlgorithm Algorithm { get; }
-        public XFileHasher(IXHashAlgorithm algorithm)
+        public XFileIntegrity(IXHashAlgorithm algorithm)
         {
             if (Validation.ObjectIsNull(algorithm))
                 throw new Exception("Your algorithm is null");

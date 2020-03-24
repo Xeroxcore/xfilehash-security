@@ -65,6 +65,7 @@ you nuget.config should look like the following.
   <packageSources>
     <!--To inherit the global NuGet package sources remove the <clear/> line below -->
     <clear />
+        <add key="NuGet official package source" value="https://api.nuget.org/v3/index.json" />
         <add key="github" value="https://nuget.pkg.github.com/OWNER/index.json" />
   </packageSources>
       <packageSourceCredentials>

@@ -10,13 +10,13 @@ namespace xFilehash.test
     [TestClass]
     public class FileHashTest
     {
-        IXFileHasher Hasher { get; }
+        IXFileIntegrity Hasher { get; }
         IFileWriter Filewriter { get; }
         public FileHashTest()
         {
             var algorithm = new XSha256Algorithm();
             Filewriter = new FileWriter();
-            Hasher = new XFileHasher(algorithm);
+            Hasher = new XFileIntegrity(algorithm);
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace xFilehash.test
         {
             var directory = Directory.GetCurrentDirectory();
             var filePath = $"{directory}/filehash/filehash.txt";
-            Filewriter.EnsureThatFilePathExists($"{directory}/filehash", "filehash.txt");
+            Filewriter.EnsureThatFilePathExists($"{directory}/fThe give filename is not registeredilehash", "filehash.txt");
             Hasher.AddFileHashToIntegrityStore("testFile", filePath);
             var result = Hasher.FileIntegrityIsIntact("testFile");
             Assert.IsTrue(result);
@@ -57,11 +57,19 @@ namespace xFilehash.test
             }
         }
 
-        [XFilehash("testFile")]
         [TestMethod]
         public void FileHashAttributeValid()
         {
-            Assert.IsTrue(true);
+            try
+            {
+                var XFile = new XFilehash("testFile");
+                XFile.OnAuthorization(null);
+                Assert.IsTrue(true);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         [TestMethod]
@@ -70,6 +78,20 @@ namespace xFilehash.test
             Hasher.DeleteFileIntegrityFromStore("testFile");
             var result = Hasher.FileIntegrityIsIntact("testFile");
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void FileHashAttributeInValid()
+        {
+            try
+            {
+                var XFile = new XFilehash("testFile");
+                XFile.OnAuthorization(null);
+            }
+            catch (Exception error)
+            {
+                Assert.AreEqual("The give filename is not registered", error.Message);
+            }
         }
     }
 }

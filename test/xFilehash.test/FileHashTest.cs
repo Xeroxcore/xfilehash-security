@@ -71,20 +71,5 @@ namespace xFilehash.test
             var result = Hasher.FileIntegrityIsIntact("testFile");
             Assert.IsFalse(result);
         }
-
-        [XFilehash("")]
-        [TestMethod]
-        public void FileHashAttributeInValid()
-        {
-            try
-            {
-
-            }
-            catch
-            {
-                Assert.IsTrue(true);
-            }
-
-        }
     }
 }

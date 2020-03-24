@@ -41,7 +41,7 @@ namespace xFilehash.test
         }
 
         [TestMethod]
-        public void AddDublicates()
+        public void AddDublicatesNotSuccesful()
         {
             try
             {
@@ -70,6 +70,21 @@ namespace xFilehash.test
             Hasher.DeleteFileIntegrityFromStore("testFile");
             var result = Hasher.FileIntegrityIsIntact("testFile");
             Assert.IsFalse(result);
+        }
+
+        [XFilehash("")]
+        [TestMethod]
+        public void FileHashAttributeInValid()
+        {
+            try
+            {
+
+            }
+            catch
+            {
+                Assert.IsTrue(true);
+            }
+
         }
     }
 }

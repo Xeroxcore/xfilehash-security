@@ -9,6 +9,8 @@ namespace xfilehash
         private IXHashAlgorithm Algorithm { get; }
         public XFileHasher(IXHashAlgorithm algorithm)
         {
+            if (Validation.ObjectIsNull(algorithm))
+                throw new Exception("Your algorithm is null");
             Algorithm = algorithm;
         }
 
